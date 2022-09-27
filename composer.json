@@ -1,0 +1,27 @@
+{
+  "name": "olsen/harold",
+  "description": "Projet d'application web permettant la gestion des stocks",
+  "type": "project",
+  "license": "Copyleft",
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Mathéo Olsen",
+      "email": "olsen.matheo@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-intl": "*",
+    "ext-pdo": "*"
+  },
+  "scripts": {
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "bin/run-server.bat"
+    ]
+  }
+}

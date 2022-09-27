@@ -1,0 +1,56 @@
+/* GENERAL */
+
+html {
+    background: url(../img/black-linear.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    --main-color: #1c1c1c;
+    --light-main: #3f3f3f;
+}
+
+/* END GENERAL */
+
+/* ------------------------------------------------------ */
+
+/* FORM */
+
+.form__box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    background-color: var(--main-color);
+    border-radius: 30px;
+}
+
+.form__box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__box form input:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.form__box form input {
+    padding: 10px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/* END FORM */
+
+/* ------------------------------------------------------ */
+
+img {
+    height: 80px;
+}
+
+.img__box {
+    margin-bottom: 35px;
+}
