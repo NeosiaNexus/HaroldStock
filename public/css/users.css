@@ -1,0 +1,124 @@
+/* TABLE */
+
+table {
+    color: var(--main-color);
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.user__list__box {
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+td {
+    padding: 20px 50px;
+    vertical-align: center;
+}
+
+.edit__part form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.edit__part {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+tr {
+    height: 70px;
+}
+
+table button {
+    padding: 8px 15px;
+    margin: 5px 8px;
+    background-color: var(--light-main);
+    color: var(--white);
+    border-radius: 1000px;
+    border: 3px solid var(--white);
+}
+
+/* END TABLE */
+
+/* -------------------------------------------- */
+
+/* USER LINE */
+
+.user__line {
+    border-radius: 2000px;
+    transition: all;
+    transition-duration: 0.3s;
+    padding: 100px 0px;
+}
+
+.user__line:hover {
+    box-shadow: 2px 2px 15px #c1c1c1;
+    cursor: pointer;
+}
+
+/* END USER LINE */
+
+/* -------------------------------------------- */
+
+/* COLOR STATUS */
+
+.delete {
+    background-color: #ff0000;
+    color: var(--white);
+}
+
+/* END COLOR STATUS */
+
+/* -------------------------------------------- */
+
+/* USER BOX */
+
+.user__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+/* END USER BOX */
+
+/* -------------------------------------------- */
+
+/* USER FORM ADD */
+
+.user__add__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.user__add__box form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+}
+
+.user__add__head {
+    text-align: center;
+}
+
+.user__add__box input {
+    padding: 3px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/* END USER FORM ADD */
+
+/* -------------------------------------------- */
