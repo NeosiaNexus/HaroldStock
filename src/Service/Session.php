@@ -23,7 +23,7 @@ class Session
             if (headers_sent()) {
                 throw new SessionException("Impossible de modifier les entêtes HTTP.");
             }
-
+            session_set_cookie_params(3600);
             session_start();
         } elseif ($status === PHP_SESSION_DISABLED) {
             // Session désactivée
