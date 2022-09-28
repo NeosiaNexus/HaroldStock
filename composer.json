@@ -16,7 +16,8 @@
   ],
   "require": {
     "ext-intl": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-ctype": "*"
   },
   "scripts": {
     "start": [
