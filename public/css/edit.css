@@ -1,0 +1,30 @@
+.edit__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.edit__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+}
+
+.edit__box__head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit__box form input {
+    padding: 3px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
