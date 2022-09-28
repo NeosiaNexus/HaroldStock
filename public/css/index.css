@@ -1,0 +1,55 @@
+/* REMARQUES */
+.remarque {
+    text-align: center;
+    padding: var(--basic--padding);
+    box-shadow: 2px 2px 15px #c1c1c1;
+    border-radius: 35px;
+    max-width: 700px;
+}
+
+/* END REMARQUES */
+
+/* -------------------------------------------- */
+
+/* PRODUITS */
+
+.produits {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 85px;
+}
+
+.produits a {
+    text-decoration: none;
+    color: var(--main-color);
+    padding: var(--basic--padding);
+}
+
+.ajouter, .consulter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--main-color);
+    padding: var(--basic--padding);
+    border-radius: 30px;
+    transition: all;
+    transition-duration: 0.3s;
+    max-width: 400px;
+}
+
+.ajouter:hover, .consulter:hover {
+    color: var(--white);
+    background-color: var(--main-color);
+    border: 3px solid var(--light-main);
+}
+
+.produits .icon {
+    font-size: 70px;
+    padding: var(--basic--padding);
+}
+
+/* END PRODUITS */
