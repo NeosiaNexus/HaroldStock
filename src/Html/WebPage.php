@@ -131,16 +131,35 @@ HTML
     public function toHTML(): string
     {
         return <<<HTML
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{$this->getTitle()}</title>
-{$this->getHead()}
+    <!DOCTYPE html>
+    <html lang="fr">
+        <head>
+        
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+            <title>{$this->getTitle()}</title>
+            
+            <!-- BOX ICONS -->
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+            <!-- AOS LOAD ANIMATION -->
+            <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+            <!-- ICONS -->
+            <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        
+            <!-- PERSONAL -->
+            {$this->getHead()}
     </head>
     <body>
-{$this->getBody()}
+        {$this->getBody()}
+        <!-- SCRIPT -->
+        <script>
+            AOS.init();
+        </script>
+        <!-- END SCRIPT -->
     </body>
 </html>
 HTML;
