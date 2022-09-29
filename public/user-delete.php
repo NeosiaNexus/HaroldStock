@@ -18,6 +18,14 @@ try {
 
 if (isset($_POST['delete-user']) && ctype_digit($_POST['delete-user'])) {
 
+    $userId = (int)$_POST['delete-user'];
+
+    if ($userId == 1) {
+        header('Location: /users.php');
+        die();
+        return;
+    }
+
     User::delete((int)$_POST['delete-user']);
 
 }

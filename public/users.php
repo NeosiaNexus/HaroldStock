@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Authentication\Exception\NotLoggedException;
 use Authentication\UserAuthentication;
+use Entity\Exception\UserNotFoundException;
 use Entity\User;
 use Html\WebPage;
 
@@ -16,7 +17,7 @@ try {
 
     $user = $auth->getUser();
 
-} catch (NotLoggedException $e) {
+} catch (UserNotFoundException|NotLoggedException $e) {
 
     header('Location: /login.php');
 
@@ -24,9 +25,23 @@ try {
 
 }
 
+if (!$user->isAdmin()) {
+
+    header('Location: /index.php');
+
+    die();
+
+}
+
 if (isset($_POST['add_user_submit'])) {
 
-    User::add($_POST['add_user_login'], $_POST['add_user_password']);
+    $admin = 0;
+
+    if (isset($_POST['add_useradmin'])) {
+        $admin = 1;
+    }
+
+    User::add($_POST['add_user_login'], $_POST['add_user_password'], $admin);
 
 }
 
@@ -58,7 +73,7 @@ $page->appendContent(<<<HTML
         </div>
         <div class="bottom">
             <form action="index.php" method="post">
-                <input type="submit" value="Se déconnecter" name="logout">
+                <input type="submit" value="Déconnexion" name="logout" class="logout_button">
             </form>
         </div>
     </div>
@@ -73,21 +88,25 @@ $page->appendContent(<<<HTML
         </div>
         <div class="content">
             <div class="user__box">
-                <div class="user__add__box">
+                <div class="user__add__box" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="500">
                     <div class="user__add__head">
-                        <h2>Ajouter un utilisateur</h2>
+                        <h2 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="700">Ajouter un utilisateur</h2>
                         <p>
-                            <div class="black-spacer">
+                            <div class="black-spacer" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="800">
                             </div>
                         </p>
                     </div>
                     <form action="{$_SERVER['PHP_SELF']}" method="post">
-                        <input type="text" name="add_user_login" placeholder="Identifiant" required>
-                        <input type="password" name="add_user_password" placeholder="Mot de passe" required>
-                        <input type="submit" name="add_user_submit" value="Ajouter">
+                        <input type="text" name="add_user_login" placeholder="Identifiant" required  data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                        <input type="password" name="add_user_password" placeholder="Mot de passe" required  data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1100">
+                        <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1200">
+                            <input type="checkbox" name="add_useradmin">
+                            <label style="color: red">Administrateur</label>
+                        </div>
+                        <input type="submit" name="add_user_submit" value="Ajouter"  data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1300">
                     </form>
                 </div>
-            <div class="user__list__box">
+            <div class="user__list__box"  data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="1000">
                 
 HTML
 );
@@ -104,15 +123,20 @@ HTML
 
     foreach ($users as $iterUser) {
 
-        $display_login = $iterUser->getLogin();
+        $you = "";
+        $style = "";
+
+        if ($iterUser->isAdmin()) {
+            $style = "style=color:red;";
+        }
 
         if ($iterUser->getLogin() == $user->getLogin()) {
-            $display_login .= " (vous)";
+            $you .= " (vous)";
         }
 
         $page->appendContent(<<<HTML
                     <tr class="user__line">
-                        <td>$display_login</td>
+                        <td $style>{$iterUser->getLogin()} $you</td>
                         <td class="edit__part">
                             <form action="user-edit.php" method="post">
                                 <button type="submit" name="edit-user" value="{$iterUser->getId()}">

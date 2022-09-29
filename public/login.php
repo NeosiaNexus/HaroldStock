@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use Authentication\Exception\NotLoggedException;
 use Authentication\UserAuthentication;
+use Entity\Exception\UserNotFoundException;
 use Html\WebPage;
+use Service\Session;
 
 $auth = new UserAuthentication();
 
@@ -75,4 +77,9 @@ HTML
     echo $page->toHTML();
 
 
+} catch (UserNotFoundException $e) {
+    header('Location: /login.php');
+    Session::start();
+    session_unset();
+    session_destroy();
 }

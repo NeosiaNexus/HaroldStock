@@ -19,12 +19,25 @@ try {
 
 Session::start();
 $_POST['edit_user_id'] = $_SESSION['edit_user_id'];
-unset($_SESSION["edit_ser_id"]);
+unset($_SESSION["edit_user_id"]);
 
 if (isset($_POST['edit_submit'])) {
 
-    $user = User::finById((int)$_POST['edit_user_id']);
-    $user->save($_POST['edit_password']);
+    try {
+        $user = User::finById((int)$_POST['edit_user_id']);
+
+        if (isset($_POST['edit_admincheck'])) {
+            $user->setAdmin(1);
+        } else {
+            $user->setAdmin(0);
+        }
+
+        $user->save($_POST['edit_password']);
+
+    } catch (UserNotFoundException) {
+        header('Location: /login.php');
+        die();
+    }
 
 }
 

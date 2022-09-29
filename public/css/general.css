@@ -138,19 +138,7 @@ body {
 /* BOTTOM */
 
 .left__side .bottom {
-    color: var(--white);
     padding: var(--basic--padding);
-    font-size: 17px;
-    text-transform: uppercase;
-}
-
-.left__side .bottom i {
-    margin-right: 7px;
-}
-
-.bottom a {
-    text-decoration: none;
-    color: var(--white);
 }
 
 /* END BOTTOM */
@@ -212,3 +200,12 @@ body {
 }
 
 /* END FOOTER */
+
+/* LOGOUT */
+
+.logout_button {
+    padding: 5px 25px;
+    border-radius: 20px;
+    background-color: var(--white);
+    color: var(--main-color);
+}

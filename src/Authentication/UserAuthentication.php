@@ -86,11 +86,20 @@ HTML;
 
     /**
      * @throws NotLoggedException
+     * @throws UserNotFoundException
      */
     public function getUser(): User
     {
         if (isset($this->user)) {
+
+            try {
+                $this->setUser(User::finById($this->user->getId()));
+            } catch (UserNotFoundException) {
+                throw new UserNotFoundException("Utilisateur non existant");
+            }
+
             return $this->user;
+
         } else {
             throw new NotLoggedException("Aucun utilsateur défini");
         }

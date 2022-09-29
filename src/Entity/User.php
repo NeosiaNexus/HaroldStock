@@ -11,6 +11,7 @@ class User
 {
     private int $id;
     private string $login;
+    private int $admin;
 
     /**
      * @return User[]
@@ -19,7 +20,7 @@ class User
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-                SELECT id, login
+                SELECT id,login,admin
                 FROM users
 SQL
         );
@@ -51,7 +52,7 @@ SQL
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-            SELECT id,login
+            SELECT id,login,admin
             FROM users
             WHERE id = :id
 SQL
@@ -82,7 +83,7 @@ SQL
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-            SELECT id,login
+            SELECT id,login,admin
             FROM users
             WHERE login = :login AND password = :password
 SQL
@@ -103,17 +104,20 @@ SQL
         return $retour;
     }
 
-    public static function add(string $login, string $password)
+    public static function add(string $login, string $password, int $admin): void
     {
 
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-                INSERT INTO users (login,password)
-                VALUES (:login, :password)
+                INSERT INTO users (login,password,admin)
+                VALUES (:login, :password, :admin)
 SQL
         );
 
-        $stmt->execute(["login" => StringEscaper::escapeString($login), "password" => hash('sha512', StringEscaper::escapeString($password))]);
+        $stmt->execute(
+            ["login" => StringEscaper::escapeString($login),
+                "password" => hash('sha512', StringEscaper::escapeString($password)),
+                "admin" => $admin]);
 
     }
 
@@ -122,12 +126,14 @@ SQL
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
                 UPDATE users
-                SET password = :password
+                SET password = :password, admin = :admin
                 WHERE id = :id
 SQL
         );
 
-        $stmt->execute(["id" => StringEscaper::escapeString($this->getId()), "password" => hash('sha512', StringEscaper::escapeString($password))]);
+        $stmt->execute(["id" => StringEscaper::escapeString($this->getId()),
+            "password" => hash('sha512', StringEscaper::escapeString($password)),
+            "admin" => $this->getAdmin()]);
 
     }
 
@@ -137,6 +143,27 @@ SQL
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAdmin(): int
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param int $admin
+     */
+    public function setAdmin(int $admin): void
+    {
+        $this->admin = $admin;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->getAdmin() == 1;
     }
 
     /**
