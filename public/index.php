@@ -24,7 +24,7 @@ $user = null;
 
 // Tentative de récupération de l'utilisateur
 try {
-    $user = $auth->getUser();
+    $user = $auth->getFreshUser();
 } catch (NotLoggedException $e) {
     header('Location: /login.php');
     die();
@@ -92,10 +92,10 @@ $page->appendContent(<<<HTML
                 <a href="#">
                     <div class="ajouter" data-aos="zoom-out" data-aos-duration="800" data-aos-delay="500">
                         <i class='bx bxs-edit-alt icon' data-aos="flip-left" data-aos-duration="400" data-aos-delay="1000"></i>
-                        <p class="desc">Cliquez ici pour ajouter, éditer ou supprimer un produit ou une catégorie.</p>
+                        <p class="desc">Cliquez ici pour ajouter, éditer ou supprimer une catégorie.</p>
                     </div>
                 </a>
-                <a href="#">
+                <a href="products.php">
                     <div class="consulter" data-aos="zoom-out" data-aos-duration="800" data-aos-delay="1000">
                         <i class='bx bx-list-plus icon'  data-aos="flip-left" data-aos-duration="400" data-aos-delay="1500"></i>
                         <p class="desc">Cliquez ici pour voir le stock et le mettre à jour.</p>

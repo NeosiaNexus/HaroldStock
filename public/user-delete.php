@@ -10,7 +10,7 @@ $auth = new UserAuthentication();
 
 // Tentative de récupération de l'utilisateur
 try {
-    $user = $auth->getUser();
+    $user = $auth->getFreshUser();
 } catch (NotLoggedException $e) {
     header('Location: /login.php');
     die();

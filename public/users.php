@@ -15,7 +15,7 @@ $user = null;
 // Tentative de récupération de l'utilisateur
 try {
 
-    $user = $auth->getUser();
+    $user = $auth->getFreshUser();
 
 } catch (UserNotFoundException|NotLoggedException $e) {
 
@@ -131,7 +131,7 @@ HTML
         }
 
         if ($iterUser->getLogin() == $user->getLogin()) {
-            $you .= " (vous)";
+            $you .= " <sup>(vous)</sup>";
         }
 
         $page->appendContent(<<<HTML

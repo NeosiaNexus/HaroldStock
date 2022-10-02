@@ -22,7 +22,7 @@
     gap: 10px;
 }
 
-.edit__box form input {
+.edit__box form input, select {
     padding: 3px 20px;
     text-align: center;
     box-sizing: border-box;

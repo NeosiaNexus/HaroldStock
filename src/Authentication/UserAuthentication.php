@@ -85,10 +85,33 @@ HTML;
     }
 
     /**
-     * @throws NotLoggedException
      * @throws UserNotFoundException
      */
     public function getUser(): User
+    {
+        if ($this->user == null) {
+            throw new UserNotFoundException("L'utilisateur n'existe pas.");
+        }
+
+        return $this->user;
+    }
+
+    public function setUser(?User $user): void
+    {
+        try {
+            Session::start();
+            $this->user = $user;
+            $_SESSION[self::SESSION_KEY] = [self::USER_KEY => $user];
+        } catch (SessionException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     * @throws NotLoggedException
+     * @throws UserNotFoundException
+     */
+    public function getFreshUser(): User
     {
         if (isset($this->user)) {
 
@@ -102,17 +125,6 @@ HTML;
 
         } else {
             throw new NotLoggedException("Aucun utilsateur défini");
-        }
-    }
-
-    public function setUser(?User $user): void
-    {
-        try {
-            Session::start();
-            $this->user = $user;
-            $_SESSION[self::SESSION_KEY] = [self::USER_KEY => $user];
-        } catch (SessionException $e) {
-            echo $e->getMessage();
         }
     }
 

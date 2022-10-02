@@ -139,6 +139,7 @@ HTML
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             
             <title>{$this->getTitle()}</title>
+
             
             <!-- BOX ICONS -->
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
